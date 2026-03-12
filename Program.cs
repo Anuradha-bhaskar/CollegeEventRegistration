@@ -73,6 +73,29 @@ using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
     db.Database.Migrate();
+
+    var existingUserIds = db.Users.Select(u => u.Id).ToHashSet();
+    var existingEventIds = db.Events.Select(e => e.EventId).ToHashSet();
+    var orphanedRegistrations = db.Registrations
+        .ToList()
+        .Where(r => !existingUserIds.Contains(r.UserId) || !existingEventIds.Contains(r.EventId))
+        .ToList();
+
+    foreach (var registration in orphanedRegistrations)
+    {
+        var ev = db.Events.FirstOrDefault(e => e.EventId == registration.EventId);
+        if (ev != null)
+        {
+            ev.Seats++;
+        }
+    }
+
+    if (orphanedRegistrations.Count > 0)
+    {
+        db.Registrations.RemoveRange(orphanedRegistrations);
+        db.SaveChanges();
+    }
+
     if (!db.Users.Any(u => u.Role == "Admin"))
     {
         db.Users.Add(new User
