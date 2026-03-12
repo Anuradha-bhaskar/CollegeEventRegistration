@@ -1,0 +1,22 @@
+<h2>My Registrations</h2>
+
+<div *ngIf="message" class="error">{{ message }}</div>
+
+<table *ngIf="registrations.length > 0">
+  <thead>
+    <tr>
+      <th>Event</th>
+      <th>Date</th>
+      <th>Seats Left</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let r of registrations">
+      <td>{{ r.eventName }}</td>
+      <td>{{ r.date | date:'mediumDate' }}</td>
+      <td>{{ r.seats }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<p *ngIf="registrations.length === 0 && !message">You have not registered for any events.</p>

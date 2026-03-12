@@ -1,0 +1,24 @@
+/* You can add global styles to this file, and also import other style files */
+
+body { font-family: Arial, sans-serif; padding: 20px; max-width: 900px; margin: 0 auto; }
+
+nav { margin: 10px 0; }
+nav a { margin: 0 5px; text-decoration: none; color: #0066cc; }
+nav a:hover { text-decoration: underline; }
+
+.auth-container { max-width: 360px; }
+.auth-container input { width: 100%; padding: 8px; box-sizing: border-box; }
+.auth-container button { padding: 8px 20px; cursor: pointer; }
+
+.error  { color: #c00; margin: 8px 0; }
+.success { color: #080; margin: 8px 0; }
+.info   { color: #005fcc; margin: 8px 0; }
+
+table { border-collapse: collapse; width: 100%; margin-top: 10px; }
+th, td { border: 1px solid #ccc; padding: 8px 12px; text-align: left; }
+th { background: #f0f0f0; }
+
+input, select { padding: 6px; margin-bottom: 4px; }
+button { padding: 6px 16px; cursor: pointer; }
+button:disabled { opacity: 0.5; cursor: not-allowed; }
+

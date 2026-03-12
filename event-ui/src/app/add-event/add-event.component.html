@@ -1,0 +1,9 @@
+<h2>Add Event</h2>
+
+<div *ngIf="message" class="success">{{ message }}</div>
+<div *ngIf="error" class="error">{{ error }}</div>
+
+<input [(ngModel)]="eventName" placeholder="Event Name" /><br /><br />
+<input [(ngModel)]="date" type="date" /><br /><br />
+<input [(ngModel)]="seats" type="number" placeholder="Seats" min="1" /><br /><br />
+<button (click)="add()">Add Event</button>

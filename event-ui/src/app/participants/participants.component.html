@@ -1,0 +1,35 @@
+<h2>Participant Management</h2>
+
+<div *ngIf="message" class="error">{{ message }}</div>
+
+<h3>All Registrations</h3>
+<table *ngIf="allRegistrations.length > 0">
+  <thead>
+    <tr>
+      <th>Student</th>
+      <th>Event</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let r of allRegistrations">
+      <td>{{ r.username }}</td>
+      <td>{{ r.eventName }}</td>
+      <td>{{ r.date | date:'mediumDate' }}</td>
+    </tr>
+  </tbody>
+</table>
+<p *ngIf="allRegistrations.length === 0 && !message">No registrations yet.</p>
+
+<hr />
+
+<h3>Participants by Event</h3>
+<select (change)="loadParticipants(+$any($event.target).value)">
+  <option value="">-- Select Event --</option>
+  <option *ngFor="let e of events" [value]="e.eventId">{{ e.eventName }}</option>
+</select>
+
+<ul *ngIf="participants.length > 0">
+  <li *ngFor="let p of participants">{{ p.username }}</li>
+</ul>
+<p *ngIf="selectedEventId && participants.length === 0">No participants for this event.</p>

@@ -1,0 +1,25 @@
+<h1>College Event System</h1>
+
+<nav *ngIf="auth.isLoggedIn()">
+  <span>Hello, <strong>{{ auth.getUsername() }}</strong> ({{ auth.getRole() }})</span>
+  &nbsp;|
+
+  <!-- Admin links -->
+  <ng-container *ngIf="auth.isAdmin()">
+    <a routerLink="/add">Add Event</a> |
+    <a routerLink="/view">View Events</a> |
+    <a routerLink="/participants">Participants</a> |
+  </ng-container>
+
+  <!-- User links -->
+  <ng-container *ngIf="!auth.isAdmin()">
+    <a routerLink="/view">Events</a> |
+    <a routerLink="/my-registrations">My Registrations</a> |
+  </ng-container>
+
+  <a href="#" (click)="$event.preventDefault(); auth.logout()">Logout</a>
+</nav>
+
+<hr />
+
+<router-outlet></router-outlet>

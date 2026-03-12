@@ -1,0 +1,33 @@
+<h2>Events</h2>
+
+<div *ngIf="message" class="info">{{ message }}</div>
+
+<table *ngIf="events.length > 0">
+  <thead>
+    <tr>
+      <th>Event Name</th>
+      <th>Date</th>
+      <th>Seats Available</th>
+      <th *ngIf="isUser">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let e of events">
+      <td>{{ e.eventName }}</td>
+      <td>{{ e.date | date:'mediumDate' }}</td>
+      <td>{{ e.seats }}</td>
+      <td *ngIf="isUser">
+        <button
+          (click)="register(e.eventId)"
+          [disabled]="e.seats === 0 || isAlreadyRegistered(e.eventId)"
+        >
+          <span *ngIf="isAlreadyRegistered(e.eventId)">✓ Already Registered</span>
+          <span *ngIf="!isAlreadyRegistered(e.eventId) && e.seats === 0">Full</span>
+          <span *ngIf="!isAlreadyRegistered(e.eventId) && e.seats > 0">Register</span>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<p *ngIf="events.length === 0 && !message">No events available.</p>
