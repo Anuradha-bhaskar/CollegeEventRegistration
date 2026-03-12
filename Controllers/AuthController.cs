@@ -25,8 +25,8 @@ namespace CollegeEventRegistration.Controllers
         [HttpPost("register")]
         public IActionResult Register(RegisterRequest req)
         {
-            if (string.IsNullOrWhiteSpace(req.Username) || string.IsNullOrWhiteSpace(req.Password))
-                return BadRequest(new { message = "Username and password are required." });
+            if (string.IsNullOrWhiteSpace(req.Username) || string.IsNullOrWhiteSpace(req.Password) || string.IsNullOrWhiteSpace(req.FullName))
+                return BadRequest(new { message = "Username, full name, and password are required." });
 
             if (_context.Users.Any(u => u.Username == req.Username))
                 return BadRequest(new { message = "Username already exists." });
@@ -34,6 +34,7 @@ namespace CollegeEventRegistration.Controllers
             var user = new User
             {
                 Username = req.Username,
+                FullName = req.FullName,
                 PasswordHash = BCrypt.Net.BCrypt.HashPassword(req.Password),
                 Role = "User"
             };

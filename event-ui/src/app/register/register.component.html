@@ -5,6 +5,7 @@
   <div *ngIf="message" class="success">{{ message }}</div>
 
   <input [(ngModel)]="username" placeholder="Username" /><br /><br />
+  <input [(ngModel)]="fullName" placeholder="Full Name" /><br /><br />
   <input [(ngModel)]="password" type="password" placeholder="Password" /><br /><br />
   <button (click)="register()">Register</button>
   <p>Already have an account? <a routerLink="/login">Login</a></p>

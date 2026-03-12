@@ -74,7 +74,7 @@ namespace CollegeEventRegistration.Controllers
                     (ru, e) => new
                     {
                         ru.r.Id,
-                        ru.u.Username,
+                        ru.u.FullName,
                         ru.r.EventId,
                         e.EventName,
                         e.Date
@@ -91,7 +91,7 @@ namespace CollegeEventRegistration.Controllers
             var result = _context.Registrations
                 .Where(r => r.EventId == eventId)
                 .Join(_context.Users, r => r.UserId, u => u.Id,
-                    (r, u) => new { r.Id, u.Username, r.EventId })
+                    (r, u) => new { r.Id, u.FullName, r.EventId })
                 .ToList();
             return Ok(result);
         }

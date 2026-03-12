@@ -12,6 +12,7 @@ import { AuthService } from '../auth.service';
 })
 export class RegisterComponent {
   username = '';
+  fullName = '';
   password = '';
   message = '';
   error = '';
@@ -21,7 +22,7 @@ export class RegisterComponent {
   register() {
     this.message = '';
     this.error = '';
-    this.auth.register(this.username, this.password).subscribe({
+    this.auth.register(this.username, this.fullName, this.password).subscribe({
       next: () => {
         this.message = 'Registered! Please login.';
         setTimeout(() => this.router.navigate(['/login']), 1500);

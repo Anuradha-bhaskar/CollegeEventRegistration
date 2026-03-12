@@ -9,8 +9,8 @@ export class AuthService {
 
   constructor(private http: HttpClient, private router: Router) {}
 
-  register(username: string, password: string) {
-    return this.http.post(`${this.api}/register`, { username, password });
+  register(username: string, fullName: string, password: string) {
+    return this.http.post(`${this.api}/register`, { username, fullName, password });
   }
 
   login(username: string, password: string) {

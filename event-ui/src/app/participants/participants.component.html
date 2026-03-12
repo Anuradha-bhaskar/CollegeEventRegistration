@@ -13,7 +13,7 @@
   </thead>
   <tbody>
     <tr *ngFor="let r of allRegistrations">
-      <td>{{ r.username }}</td>
+      <td>{{ r.fullName }}</td>
       <td>{{ r.eventName }}</td>
       <td>{{ r.date | date:'mediumDate' }}</td>
     </tr>
@@ -30,6 +30,6 @@
 </select>
 
 <ul *ngIf="participants.length > 0">
-  <li *ngFor="let p of participants">{{ p.username }}</li>
+  <li *ngFor="let p of participants">{{ p.fullName }}</li>
 </ul>
 <p *ngIf="selectedEventId && participants.length === 0">No participants for this event.</p>
