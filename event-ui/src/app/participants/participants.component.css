@@ -1,0 +1,167 @@
+:host {
+  display: block;
+}
+
+.participants-page {
+  display: grid;
+  gap: 22px;
+}
+
+
+
+
+.participants-hero h2 {
+  margin: 0;
+  color: #2c3e50;
+}
+
+
+
+.participants-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.7fr) minmax(300px, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+
+.panel {
+  background: #ffffff;
+  border: 1px solid #dfeaf3;
+  border-radius: 16px;
+  padding: 22px;
+  box-shadow: 0 10px 24px rgba(44, 62, 80, 0.06);
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: flex-start;
+  margin-bottom: 18px;
+}
+
+.panel-header.compact {
+  margin-bottom: 14px;
+}
+
+.panel-header h3 {
+  margin: 0;
+  color: #2c3e50;
+}
+
+.panel-header p {
+  margin: 8px 0 0;
+  color: #7f8c8d;
+  font-size: 0.95rem;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 32px;
+  padding: 0 12px;
+  border-radius: 999px;
+  background: #ebf5fb;
+  color: #2874a6;
+  font-size: 0.88rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.pill.emphasis {
+  background: #3498db;
+  color: #ffffff;
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+.table-wrap table {
+  margin-top: 0;
+}
+
+.filter-field {
+  display: grid;
+  gap: 8px;
+}
+
+.filter-label {
+  font-weight: 550;
+  color: #2c3e50;
+}
+
+.filter-field select {
+  width: 100%;
+  min-height: 44px;
+  border: 1px solid #d5dfe8;
+  border-radius: 12px;
+  background: #ffffff;
+  padding: 10px 12px;
+}
+
+.filter-field select:focus {
+  border-color: #3498db;
+  box-shadow: 0 0 0 4px rgba(52, 152, 219, 0.14);
+}
+
+.selected-state {
+  margin-top: 16px;
+}
+
+.participant-list {
+  margin-top: 16px;
+  padding: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.participant-list li {
+  background: #f8fbfe;
+  border: 1px solid #e1edf7;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  padding: 12px 14px;
+  font-weight: 500;
+  color: #2c3e50;
+}
+
+.participant-list li:last-child {
+  margin-bottom: 0;
+}
+
+.participant-list li:hover {
+  background: #eef7ff;
+}
+
+.empty-state {
+  margin: 18px 0 0;
+  padding: 14px 16px;
+  border: 1px dashed #c9dcec;
+  border-radius: 12px;
+  background: #f9fcff;
+  color: #6b7d8f;
+}
+
+@media (max-width: 900px) {
+  .participants-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .participants-hero,
+  .panel {
+    padding: 18px;
+    border-radius: 14px;
+  }
+
+  .panel-header {
+    flex-direction: column;
+  }
+
+  .pill {
+    width: fit-content;
+  }
+}

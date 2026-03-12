@@ -1,9 +1,53 @@
-<h2>Add Event</h2>
+<section class="event-form-shell">
+	<div class="event-form-card">
+		<div class="event-form-header">
+			<h2>Add Event</h2>
+			
+		</div>
 
-<div *ngIf="message" class="success">{{ message }}</div>
-<div *ngIf="error" class="error">{{ error }}</div>
+		<div *ngIf="message" class="success">{{ message }}</div>
+		<div *ngIf="error" class="error">{{ error }}</div>
 
-<input [(ngModel)]="eventName" placeholder="Event Name" /><br /><br />
-<input [(ngModel)]="date" type="date" /><br /><br />
-<input [(ngModel)]="seats" type="number" placeholder="Seats" min="1" /><br /><br />
-<button (click)="add()">Add Event</button>
+		<form #eventForm="ngForm" class="event-form" (ngSubmit)="add()" novalidate>
+			<label class="field">
+				<span class="field-label">Event Name</span>
+				<input
+					[(ngModel)]="eventName"
+					name="eventName"
+					type="text"
+					placeholder="Enter the event name"
+					required
+					maxlength="100"
+				/>
+			</label>
+
+			<label class="field">
+				<span class="field-label">Event Date</span>
+				<input
+					[(ngModel)]="date"
+					name="date"
+					type="date"
+					required
+				/>
+			</label>
+
+			<label class="field">
+				<span class="field-label">Available Seats</span>
+				<input
+					[(ngModel)]="seats"
+					name="seats"
+					type="number"
+					placeholder="Number of seats"
+					min="1"
+					required
+				/>
+			</label>
+
+			<div class="form-actions">
+				<button type="submit" >
+					{{ isSubmitting ? 'Saving...' : 'Add Event' }}
+				</button>
+			</div>
+		</form>
+	</div>
+</section>

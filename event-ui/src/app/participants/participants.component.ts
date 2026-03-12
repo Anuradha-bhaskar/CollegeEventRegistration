@@ -6,7 +6,8 @@ import { EventService } from '../event.service';
   selector: 'app-participants',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './participants.component.html'
+  templateUrl: './participants.component.html',
+  styleUrl: './participants.component.css'
 })
 export class ParticipantsComponent implements OnInit {
   allRegistrations: any[] = [];

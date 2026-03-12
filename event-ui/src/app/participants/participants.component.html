@@ -1,35 +1,72 @@
-<h2>Participant Management</h2>
+<section class="participants-page">
+  <div class="participants-hero">
+  
+    <h2>Participant Management</h2>
+    
+  </div>
 
-<div *ngIf="message" class="error">{{ message }}</div>
+  <div *ngIf="message" class="error">{{ message }}</div>
 
-<h3>All Registrations</h3>
-<table *ngIf="allRegistrations.length > 0">
-  <thead>
-    <tr>
-      <th>Student</th>
-      <th>Event</th>
-      <th>Date</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let r of allRegistrations">
-      <td>{{ r.fullName }}</td>
-      <td>{{ r.eventName }}</td>
-      <td>{{ r.date | date:'mediumDate' }}</td>
-    </tr>
-  </tbody>
-</table>
-<p *ngIf="allRegistrations.length === 0 && !message">No registrations yet.</p>
+  <div class="participants-grid">
+    <section class="panel panel-wide">
+      <div class="panel-header">
+        <div>
+          <h3>All Registrations</h3>
+        </div>
+        
+      </div>
 
-<hr />
+      <div class="table-wrap" *ngIf="allRegistrations.length > 0; else noRegistrations">
+        <table>
+          <thead>
+            <tr>
+              <th>Student</th>
+              <th>Event</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let r of allRegistrations">
+              <td>{{ r.fullName }}</td>
+              <td>{{ r.eventName }}</td>
+              <td>{{ r.date | date:'mediumDate' }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
 
-<h3>Participants by Event</h3>
-<select (change)="loadParticipants(+$any($event.target).value)">
-  <option value="">-- Select Event --</option>
-  <option *ngFor="let e of events" [value]="e.eventId">{{ e.eventName }}</option>
-</select>
+    <section class="panel panel-side">
+      <div class="panel-header compact">
+        <div>
+          <h3>Participants by Event</h3>
+    
+        </div>
+      </div>
 
-<ul *ngIf="participants.length > 0">
-  <li *ngFor="let p of participants">{{ p.fullName }}</li>
-</ul>
-<p *ngIf="selectedEventId && participants.length === 0">No participants for this event.</p>
+      <label class="filter-field">
+        <span class="filter-label">Choose Event</span>
+        <select (change)="loadParticipants(+$any($event.target).value)">
+          <option value="">-- Select Event --</option>
+          <option *ngFor="let e of events" [value]="e.eventId">{{ e.eventName }}</option>
+        </select>
+      </label>
+
+      <div class="selected-state" *ngIf="selectedEventId">
+        <span class="pill emphasis">{{ participants.length }} participants</span>
+      </div>
+
+      <ul class="participant-list" *ngIf="participants.length > 0">
+        <li *ngFor="let p of participants">{{ p.fullName }}</li>
+      </ul>
+
+      <p class="empty-state" *ngIf="selectedEventId && participants.length === 0">
+        No participants for this event.
+      </p>
+    </section>
+  </div>
+</section>
+
+<ng-template #noRegistrations>
+  <p class="empty-state">No registrations yet.</p>
+</ng-template>
