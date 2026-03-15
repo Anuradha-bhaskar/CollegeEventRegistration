@@ -1,0 +1,17 @@
+.registrations-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px 0;
+}
+
+.registrations-container h1 {
+  font-size: 2.2rem;
+  margin-bottom: 32px;
+  text-align: left;
+}
+
+@media (max-width: 768px) {
+  .registrations-container h1 {
+    font-size: 1.8rem;
+  }
+}

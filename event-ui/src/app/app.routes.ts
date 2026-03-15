@@ -11,6 +11,11 @@ export const routes: Routes = [
     loadComponent: () => import('./register/register.component').then(m => m.RegisterComponent)
   },
   {
+    path: 'admin-home',
+    loadComponent: () => import('./admin-home/admin-home.component').then(m => m.AdminHomeComponent),
+    canActivate: [adminGuard]
+  },
+  {
     path: 'add',
     loadComponent: () => import('./add-event/add-event.component').then(m => m.AddEventComponent),
     canActivate: [adminGuard]

@@ -1,0 +1,55 @@
+<section class="admin-home-page">
+  <div class="admin-home-header">
+    <h2>Admin Home</h2>
+    <p>Quick overview of registrations and event timelines.</p>
+  </div>
+
+  <div *ngIf="message" class="error">{{ message }}</div>
+
+  <div class="stats-grid">
+    <article class="stat-card">
+      <p class="stat-label">Total Registrations</p>
+      <p class="stat-value">{{ totalRegistrations }}</p>
+    </article>
+
+    <article class="stat-card">
+      <p class="stat-label">Upcoming Events</p>
+      <p class="stat-value">{{ upcomingEvents.length }}</p>
+    </article>
+
+    <article class="stat-card">
+      <p class="stat-label">Past Events</p>
+      <p class="stat-value">{{ pastEvents.length }}</p>
+    </article>
+  </div>
+
+  <div class="overview-grid">
+    <section class="panel">
+      <h3>Upcoming Events</h3>
+      <ul class="event-list" *ngIf="upcomingEvents.length > 0; else noUpcoming">
+        <li *ngFor="let eventItem of upcomingEvents">
+          <span>{{ eventItem.eventName }}</span>
+          <span>{{ eventItem.date | date:'mediumDate' }}</span>
+        </li>
+      </ul>
+    </section>
+
+    <section class="panel">
+      <h3>Past Events</h3>
+      <ul class="event-list" *ngIf="pastEvents.length > 0; else noPast">
+        <li *ngFor="let eventItem of pastEvents">
+          <span>{{ eventItem.eventName }}</span>
+          <span>{{ eventItem.date | date:'mediumDate' }}</span>
+        </li>
+      </ul>
+    </section>
+  </div>
+</section>
+
+<ng-template #noUpcoming>
+  <p class="empty-state">No upcoming events available.</p>
+</ng-template>
+
+<ng-template #noPast>
+  <p class="empty-state">No past events available.</p>
+</ng-template>
